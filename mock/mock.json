@@ -1,0 +1,15 @@
+{
+	"routes": [
+		{
+			"name" : "home",
+			"endpoint": "/",
+			"template": "home",
+			"async": false
+		}
+	],
+	"data":{
+		"home":{
+			"title": "second"
+		}
+	}
+}
