@@ -1,43 +1,8 @@
-function Emitter(){
-  this.events = {};
-
-  this.emit = (eventName,data) =>{
-    const event = this.events[eventName];
-    if( event ) {
-      event.forEach(fn => {
-        fn.call(null, data);
-      });
-    }    
-  }
-
-  this.subscribe = (eventName, fn) =>{
-    if(!this.events[eventName]) {
-      this.events[eventName] = [];
-    }    
-    this.events[eventName].push(fn);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  let input = document.querySelector('input[type="text"]');
-  let button = document.getElementById('btno');
-  let buttont = document.getElementById('btnt')
-  let h1 = document.querySelector('h1');
-
-  let emitter = new Emitter();
-  button.addEventListener('click', () => {
-    emitter.emit('name-changed', {name: input.value});
-  });
-  buttont.addEventListener('click', () => {
-    emitter.emit('color', {color: 'red'});
-  });
-  emitter.subscribe('name-changed', data => {
-    h1.innerHTML = `Your name is: ${data.name}`;
-  });
-  emitter.subscribe('color', data => {
-    h1.style.color = data.color;
-  });
-});
-
-
-
+var EventEmitter = require('events').EventEmitter; 
+var event = new EventEmitter(); 
+event.on('some_event', function(arg) { 
+  console.log('some_event 事件触发'+ arg); 
+}); 
+setTimeout(function() { 
+  event.emit('some_event','haha'); 
+}, 1000); 
