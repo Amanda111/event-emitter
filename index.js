@@ -32,20 +32,26 @@ document.addEventListener("DOMContentLoaded", function() {
   let h1 = document.querySelector('h1');
 
   let emitter = new Emitter();
+
   button.addEventListener('click', () => {
     emitter.emit('name-changed', {name: input.value});
   });
+  
   buttont.addEventListener('click', () => {
     emitter.emit('color', {color: 'red'});
     emitter.off('name-changed',changeName)()
   });
+
+  function changeColor(data){
+    h1.style.color = data.color;
+  }
+
   function changeName(data){
     h1.innerHTML = `Your name is: ${data.name}`;
   }
+
   emitter.subscribe('name-changed', changeName);
-  emitter.subscribe('color', data => {
-    h1.style.color = data.color;
-  });
+  emitter.subscribe('color', changeColor);
 });
 
 
