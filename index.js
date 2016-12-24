@@ -18,7 +18,6 @@ function Emitter(){
   }
 
   this.off = (eventName, fn) =>{
-    return () => {
       this.events[eventName] = this.events[eventName].filter(eventFn => fn != eventFn)
       console.log(this.events)
     }
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   buttont.addEventListener('click', () => {
     emitter.emit('color', {color: 'red'});
-    emitter.off('name-changed',changeName)()
+    emitter.off('name-changed',changeName)
   });
 
   function changeColor(data){
