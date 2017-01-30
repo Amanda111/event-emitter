@@ -16,10 +16,14 @@ module.exports = {
             test: /\.vue$/,
             loader: 'vue'
         },
+        { 
+            test: /muife.*?js$/, 
+            loader: 'babel'
+        },
         {
             test: /\.js$/,
             loader: 'babel',
-            exclude: /node_modules/
+            exclude: /node_modules/,
         },
         {
             test: /\.(html|tpl)$/,
